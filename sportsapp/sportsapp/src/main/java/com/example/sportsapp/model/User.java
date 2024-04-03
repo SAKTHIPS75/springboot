@@ -12,6 +12,8 @@ public class User {
     private String email;
     private String date;
     private String time;
+
+    public User(){}
     public User(int id, String firstName, String lastName, String email, String date, String time) {
         this.id = id;
         this.firstName = firstName;

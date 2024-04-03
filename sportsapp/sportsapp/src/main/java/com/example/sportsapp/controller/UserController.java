@@ -15,9 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.sportsapp.model.User;
 import com.example.sportsapp.service.UserService;
 
-import java.util.List;
+import java.util.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
+@RequestMapping("/api")
 public class UserController {
     @Autowired
     UserService us;
@@ -30,13 +35,13 @@ public class UserController {
     }
     
     @GetMapping("/getdetails")
-    public ResponseEntity <List<User>> show()
+    public ResponseEntity <List<User>> show()   
     {
-        List<User>obj = us.getAlldetails();
+        List<User>obj =new ArrayList<User>(us.getAlldetails());
         return new ResponseEntity<>(obj,HttpStatus.OK);
     }
 
-    @PutMapping("/api/user/{userId}")
+    @PutMapping("/user/{userId}")
     public ResponseEntity<User> putMethodName(@PathVariable("userId") int id, @RequestBody User employee) {
         if(us.updateDetails(id,employee) == true)
         {
